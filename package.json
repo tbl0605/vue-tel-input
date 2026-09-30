@@ -26,7 +26,7 @@
     "dev": "vitepress dev docs",
     "test": "vitest --ui",
     "build": "vue-tsc && vite build",
-    "postbuild": "cp src/types/index.d.ts dist/vue-tel-input.d.ts",
+    "postbuild": "node --input-type=module -e \"import {copyFileSync} from 'fs'; copyFileSync('src/types/index.d.ts','dist/vue-tel-input.d.ts')\"",
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
