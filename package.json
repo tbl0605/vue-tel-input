@@ -22,6 +22,7 @@
   "module": "./dist/vue-tel-input.js",
   "types": "./dist/vue-tel-input.d.ts",
   "scripts": {
+    "prepare": "npm run build",
     "dev": "vitepress dev docs",
     "test": "vitest --ui",
     "build": "vue-tsc && vite build",
