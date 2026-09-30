@@ -602,33 +602,37 @@
       // down arrow
       e.preventDefault();
       data.open = true;
-      if (data.selectedIndex === null) {
-        data.selectedIndex = 0;
-      } else {
-        data.selectedIndex = Math.min(sortedCountries.value.length - 1, data.selectedIndex + 1);
-      }
-      const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
-      selEle.focus();
-      if (selEle.offsetTop + selEle.clientHeight
-        > refList.value.scrollTop + refList.value.clientHeight) {
-        refList.value.scrollTop = selEle.offsetTop
-          - refList.value.clientHeight
-          + selEle.clientHeight;
-      }
+      nextTick(() => {
+        if (data.selectedIndex === null) {
+          data.selectedIndex = 0;
+        } else {
+          data.selectedIndex = Math.min(sortedCountries.value.length - 1, data.selectedIndex + 1);
+        }
+        const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
+        selEle.focus();
+        if (selEle.offsetTop + selEle.clientHeight
+          > refList.value.scrollTop + refList.value.clientHeight) {
+          refList.value.scrollTop = selEle.offsetTop
+            - refList.value.clientHeight
+            + selEle.clientHeight;
+        }
+      });
     } else if (e.keyCode === 38) {
       // up arrow
       e.preventDefault();
       data.open = true;
-      if (data.selectedIndex === null) {
-        data.selectedIndex = sortedCountries.value.length - 1;
-      } else {
-        data.selectedIndex = Math.max(0, data.selectedIndex - 1);
-      }
-      const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
-      selEle.focus();
-      if (selEle.offsetTop < refList.value.scrollTop) {
-        refList.value.scrollTop = selEle.offsetTop;
-      }
+      nextTick(() => {
+        if (data.selectedIndex === null) {
+          data.selectedIndex = sortedCountries.value.length - 1;
+        } else {
+          data.selectedIndex = Math.max(0, data.selectedIndex - 1);
+        }
+        const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
+        selEle.focus();
+        if (selEle.offsetTop < refList.value.scrollTop) {
+          refList.value.scrollTop = selEle.offsetTop;
+        }
+      });
     } else if (e.keyCode === 13) {
       // enter key
       if (data.selectedIndex !== null) {
