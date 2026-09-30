@@ -608,7 +608,8 @@
         } else {
           data.selectedIndex = Math.min(sortedCountries.value.length - 1, data.selectedIndex + 1);
         }
-        const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
+        const adjustIndex = props.dropdownOptions.showSearchBox ? 1 : 0;
+        const selEle = refList.value.children[adjustIndex + data.selectedIndex] as HTMLLIElement;
         selEle.focus();
         if (selEle.offsetTop + selEle.clientHeight
           > refList.value.scrollTop + refList.value.clientHeight) {
@@ -627,7 +628,8 @@
         } else {
           data.selectedIndex = Math.max(0, data.selectedIndex - 1);
         }
-        const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
+        const adjustIndex = props.dropdownOptions.showSearchBox ? 1 : 0;
+        const selEle = refList.value.children[adjustIndex + data.selectedIndex] as HTMLLIElement;
         selEle.focus();
         if (selEle.offsetTop < refList.value.scrollTop) {
           refList.value.scrollTop = selEle.offsetTop;
