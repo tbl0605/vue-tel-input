@@ -654,7 +654,8 @@
         .findIndex((c) => toLowerCase(c.name).startsWith(data.typeToFindInput));
       if (typedCountryI >= 0) {
         data.selectedIndex = props.preferredCountries.length + typedCountryI;
-        const selEle = refList.value.children[data.selectedIndex] as HTMLLIElement;
+        const adjustIndex = props.dropdownOptions.showSearchBox ? 1 : 0;
+        const selEle = refList.value.children[adjustIndex + data.selectedIndex] as HTMLLIElement;
         const needToScrollTop = selEle.offsetTop < refList.value.scrollTop;
         const needToScrollBottom = selEle.offsetTop + selEle.clientHeight
           > refList.value.scrollTop + refList.value.clientHeight;
