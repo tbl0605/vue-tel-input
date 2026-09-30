@@ -601,12 +601,13 @@
     if (e.keyCode === 40) {
       // down arrow
       e.preventDefault();
+      const wasOpen = data.open;
       data.open = true;
       nextTick(() => {
         if (data.selectedIndex === null) {
           data.selectedIndex = 0;
         } else {
-          data.selectedIndex = Math.min(sortedCountries.value.length - 1, data.selectedIndex + 1);
+          data.selectedIndex = Math.min(sortedCountries.value.length - 1, data.selectedIndex + (wasOpen ? 1 : 0));
         }
         const adjustIndex = props.dropdownOptions.showSearchBox ? 1 : 0;
         const selEle = refList.value.children[adjustIndex + data.selectedIndex] as HTMLLIElement;
@@ -621,12 +622,13 @@
     } else if (e.keyCode === 38) {
       // up arrow
       e.preventDefault();
+      const wasOpen = data.open;
       data.open = true;
       nextTick(() => {
         if (data.selectedIndex === null) {
           data.selectedIndex = sortedCountries.value.length - 1;
         } else {
-          data.selectedIndex = Math.max(0, data.selectedIndex - 1);
+          data.selectedIndex = Math.max(0, data.selectedIndex - (wasOpen ? 1 : 0));
         }
         const adjustIndex = props.dropdownOptions.showSearchBox ? 1 : 0;
         const selEle = refList.value.children[adjustIndex + data.selectedIndex] as HTMLLIElement;
